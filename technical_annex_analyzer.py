@@ -649,14 +649,15 @@ def create_technical_annex_comprehensive_analysis_tab():
     for phase_key, phase_title in phases:
         phase_data = analysis_plan[phase_key]
         
-        with st.expander(phase_title):
-            st.markdown("**Tasks:**")
-            for task in phase_data["tasks"]:
-                st.write(f"• {task}")
-            
-            st.markdown("**Deliverables:**")
-            for deliverable in phase_data["deliverables"]:
-                st.write(f"✓ {deliverable}")
+        st.subheader(phase_title)
+        st.markdown("**Tasks:**")
+        for task in phase_data["tasks"]:
+            st.write(f"• {task}")
+        
+        st.markdown("**Deliverables:**")
+        for deliverable in phase_data["deliverables"]:
+            st.write(f"✓ {deliverable}")
+        st.write("")  # Add spacing
     
     # Evaluation Framework Display
     st.header("📊 Complete Evaluation Framework")
@@ -664,15 +665,16 @@ def create_technical_annex_comprehensive_analysis_tab():
     framework = analyzer.evaluation_framework
     
     # Technical Format Requirements
-    with st.expander("📋 Technical Format Requirements"):
-        st.subheader("Mandatory Sections")
-        for section in framework["technical_format_requirements"]["mandatory_sections"]:
-            st.write(f"• {section}")
-        
-        st.subheader("Format Requirements")
-        format_reqs = framework["technical_format_requirements"]["format_requirements"]
-        for req, value in format_reqs.items():
-            st.write(f"• {req.replace('_', ' ').title()}: {value}")
+    st.subheader("📋 Technical Format Requirements")
+    st.markdown("**Mandatory Sections**")
+    for section in framework["technical_format_requirements"]["mandatory_sections"]:
+        st.write(f"• {section}")
+    
+    st.markdown("**Format Requirements**")
+    format_reqs = framework["technical_format_requirements"]["format_requirements"]
+    for req, value in format_reqs.items():
+        st.write(f"• {req.replace('_', ' ').title()}: {value}")
+    st.write("")  # Add spacing
     
     # Detailed Evaluation Criteria
     st.subheader("🎯 Detailed Evaluation Criteria")
@@ -686,20 +688,22 @@ def create_technical_annex_comprehensive_analysis_tab():
     for criteria_key, criteria_title in criteria_sections:
         criteria_data = framework["evaluation_criteria_detailed"][criteria_key]
         
-        with st.expander(f"{criteria_title} (Weight: {criteria_data['weight']}%, Threshold: {criteria_data['threshold']})"):
-            for subcriterion, details in criteria_data["detailed_subcriteria"].items():
-                st.markdown(f"**{subcriterion.replace('_', ' ').title()} (Weight: {details['weight']}%)**")
-                for point in details["evaluation_points"]:
-                    st.write(f"  • {point}")
+        st.subheader(f"{criteria_title} (Weight: {criteria_data['weight']}%, Threshold: {criteria_data['threshold']})")
+        for subcriterion, details in criteria_data["detailed_subcriteria"].items():
+            st.markdown(f"**{subcriterion.replace('_', ' ').title()} (Weight: {details['weight']}%)**")
+            for point in details["evaluation_points"]:
+                st.write(f"  • {point}")
+        st.write("")  # Add spacing
     
     # Policy Compliance Requirements
-    with st.expander("📜 Policy Compliance Requirements"):
-        policy_reqs = framework["policy_compliance_requirements"]
-        
-        for policy_area, requirements in policy_reqs.items():
-            st.markdown(f"**{policy_area.replace('_', ' ').title()}:**")
-            for req, value in requirements.items():
-                st.write(f"  • {req.replace('_', ' ').title()}: {value}")
+    st.subheader("📜 Policy Compliance Requirements")
+    policy_reqs = framework["policy_compliance_requirements"]
+    
+    for policy_area, requirements in policy_reqs.items():
+        st.markdown(f"**{policy_area.replace('_', ' ').title()}:**")
+        for req, value in requirements.items():
+            st.write(f"  • {req.replace('_', ' ').title()}: {value}")
+    st.write("")  # Add spacing
     
     # Sample Sentence Analysis Demonstration
     st.header("🔍 Sample Sentence Analysis Framework")

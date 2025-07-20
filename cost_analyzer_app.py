@@ -14,6 +14,7 @@ from typing import Dict, List, Tuple, Any
 import json
 from deep_analysis_module import create_deep_analysis_dashboard
 from critical_review_module import create_critical_review_dashboard
+from technical_annex_analyzer import create_technical_annex_comprehensive_analysis_tab
 
 # Configuration
 st.set_page_config(
@@ -490,7 +491,7 @@ def main():
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
         "Choose Analysis Type",
-        ["Document Upload & Analysis", "Deep Document Analysis", "Critical Review", "Requirements Overview", "Policy Compliance", "Best Practices"]
+        ["Document Upload & Analysis", "Deep Document Analysis", "Critical Review", "Technical Annex Analyzer", "Requirements Overview", "Policy Compliance", "Best Practices"]
     )
     
     if page == "Document Upload & Analysis":
@@ -562,6 +563,9 @@ def main():
     
     elif page == "Critical Review":
         create_critical_review_dashboard()
+    
+    elif page == "Technical Annex Analyzer":
+        create_technical_annex_comprehensive_analysis_tab()
     
     elif page == "Requirements Overview":
         st.header("COST 2025 Requirements Overview")

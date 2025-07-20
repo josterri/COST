@@ -370,63 +370,65 @@ def create_critical_review_dashboard():
     for section_key, section_title in analysis_sections:
         section_data = reviewer.critical_review[section_key]
         
-        with st.expander(section_title):
-            st.markdown(f"### {section_data['title']}")
-            
-            if section_key == "fundamental_strengths":
-                for item in section_data["analysis"]:
-                    st.markdown(f"**{item['strength']}**")
-                    st.write(f"Evidence: {item['evidence']}")
-                    st.write(f"Why Effective: {item['why_effective']}")
-                    st.write(f"Strategic Value: {item['strategic_value']}")
-                    st.write(f"Sustainability: {item['sustainability']}")
-                    st.write("---")
-            
-            elif section_key == "critical_weaknesses":
-                for item in section_data["analysis"]:
-                    st.markdown(f"**🚨 {item['weakness']}**")
-                    st.write(f"Evidence: {item['evidence']}")
-                    st.error(f"Impact: {item['impact']}")
-                    st.write(f"Risk Level: {item['risk_level']}")
-                    st.write(f"Why Problematic: {item['why_problematic']}")
-                    st.write(f"Competitive Disadvantage: {item['competitive_disadvantage']}")
-                    st.write("---")
-            
-            elif section_key == "strategic_risks":
-                for item in section_data["analysis"]:
-                    st.markdown(f"**⚡ {item['risk']}**")
-                    st.write(f"Description: {item['description']}")
-                    st.write(f"Probability: {item['probability']}")
-                    st.write(f"Impact: {item['impact']}")
-                    st.write(f"Mitigation Needed: {item['mitigation_needed']}")
-                    st.write("---")
-            
-            elif section_key == "missed_opportunities":
-                for item in section_data["analysis"]:
-                    st.markdown(f"**💎 {item['opportunity']}**")
-                    st.write(f"Description: {item['description']}")
-                    st.write(f"Potential Impact: {item['potential_impact']}")
-                    st.write(f"Current Treatment: {item['current_treatment']}")
-                    st.write(f"Enhancement Needed: {item['enhancement_needed']}")
-                    st.write("---")
-            
-            elif section_key == "evaluator_psychology":
-                for item in section_data["insights"]:
-                    st.markdown(f"**🧠 {item['psychological_factor']}**")
-                    st.write(f"Current Approach: {item['current_approach']}")
-                    st.write(f"Effectiveness: {item['effectiveness']}")
-                    st.write(f"Concern: {item['concern']}")
-                    st.write(f"Optimization: {item['optimization']}")
-                    st.write("---")
-            
-            elif section_key == "competitive_analysis":
-                for item in section_data["assessment"]:
-                    st.markdown(f"**🏆 {item['competitive_dimension']}**")
-                    st.write(f"Our Position: {item['our_position']}")
-                    st.write(f"Competitive Risk: {item['competitive_risk']}")
-                    st.write(f"Strategic Advantage: {item['strategic_advantage']}")
-                    st.write(f"Recommendation: {item['recommendation']}")
-                    st.write("---")
+        st.subheader(section_title)
+        st.markdown(f"### {section_data['title']}")
+        
+        if section_key == "fundamental_strengths":
+            for item in section_data["analysis"]:
+                st.markdown(f"**{item['strength']}**")
+                st.write(f"Evidence: {item['evidence']}")
+                st.write(f"Why Effective: {item['why_effective']}")
+                st.write(f"Strategic Value: {item['strategic_value']}")
+                st.write(f"Sustainability: {item['sustainability']}")
+                st.write("---")
+        
+        elif section_key == "critical_weaknesses":
+            for item in section_data["analysis"]:
+                st.markdown(f"**🚨 {item['weakness']}**")
+                st.write(f"Evidence: {item['evidence']}")
+                st.error(f"Impact: {item['impact']}")
+                st.write(f"Risk Level: {item['risk_level']}")
+                st.write(f"Why Problematic: {item['why_problematic']}")
+                st.write(f"Competitive Disadvantage: {item['competitive_disadvantage']}")
+                st.write("---")
+        
+        elif section_key == "strategic_risks":
+            for item in section_data["analysis"]:
+                st.markdown(f"**⚡ {item['risk']}**")
+                st.write(f"Description: {item['description']}")
+                st.write(f"Probability: {item['probability']}")
+                st.write(f"Impact: {item['impact']}")
+                st.write(f"Mitigation Needed: {item['mitigation_needed']}")
+                st.write("---")
+        
+        elif section_key == "missed_opportunities":
+            for item in section_data["analysis"]:
+                st.markdown(f"**💎 {item['opportunity']}**")
+                st.write(f"Description: {item['description']}")
+                st.write(f"Potential Impact: {item['potential_impact']}")
+                st.write(f"Current Treatment: {item['current_treatment']}")
+                st.write(f"Enhancement Needed: {item['enhancement_needed']}")
+                st.write("---")
+        
+        elif section_key == "evaluator_psychology":
+            for item in section_data["insights"]:
+                st.markdown(f"**🧠 {item['psychological_factor']}**")
+                st.write(f"Current Approach: {item['current_approach']}")
+                st.write(f"Effectiveness: {item['effectiveness']}")
+                st.write(f"Concern: {item['concern']}")
+                st.write(f"Optimization: {item['optimization']}")
+                st.write("---")
+        
+        elif section_key == "competitive_analysis":
+            for item in section_data["assessment"]:
+                st.markdown(f"**🏆 {item['competitive_dimension']}**")
+                st.write(f"Our Position: {item['our_position']}")
+                st.write(f"Competitive Risk: {item['competitive_risk']}")
+                st.write(f"Strategic Advantage: {item['strategic_advantage']}")
+                st.write(f"Recommendation: {item['recommendation']}")
+                st.write("---")
+        
+        st.write("")  # Add spacing between sections
     
     # Sentence-Level Problems
     st.header("📝 Sentence-Level Problems")
@@ -434,11 +436,12 @@ def create_critical_review_dashboard():
     sentence_problems = reviewer.analyze_sentence_problems()
     
     for problem in sentence_problems:
-        with st.expander(f"Problem: {problem['sentence'][:50]}..."):
-            st.write(f"**Sentence:** {problem['sentence']}")
-            st.write(f"**Problem:** {problem['problem']}")
-            st.write(f"**Severity:** {problem['severity']}")
-            st.write(f"**Improvement:** {problem['improvement']}")
+        st.markdown(f"**Problem: {problem['sentence'][:50]}...**")
+        st.write(f"**Sentence:** {problem['sentence']}")
+        st.write(f"**Problem:** {problem['problem']}")
+        st.write(f"**Severity:** {problem['severity']}")
+        st.write(f"**Improvement:** {problem['improvement']}")
+        st.write("---")
     
     # Improvement Roadmap
     st.header("🗺️ Improvement Roadmap")
@@ -509,34 +512,35 @@ def create_critical_review_dashboard():
         ("strategic_enhancements", "🎯 Strategic Enhancements (Priority 2)"),
         ("polish_refinements", "✨ Polish Refinements (Priority 3)")
     ]:
-        with st.expander(category_name):
-            items = roadmap[category]
-            
-            if category == "immediate_fixes":
-                df = pd.DataFrame([
-                    {
-                        "Issue": item["issue"],
-                        "Action Required": item["action"],
-                        "Timeline": item["timeline"],
-                        "Effort": item["effort"],
-                        "Impact": item["impact"]
-                    }
-                    for item in items
-                ])
-            else:
-                df = pd.DataFrame([
-                    {
-                        "Area" if category == "strategic_enhancements" else "Improvement": 
-                        item.get("area", item.get("improvement")),
-                        "Action Required": item["action"],
-                        "Timeline": item["timeline"],
-                        "Effort": item["effort"],
-                        "Impact": item["impact"]
-                    }
-                    for item in items
-                ])
-            
-            st.dataframe(df, use_container_width=True)
+        st.subheader(category_name)
+        items = roadmap[category]
+        
+        if category == "immediate_fixes":
+            df = pd.DataFrame([
+                {
+                    "Issue": item["issue"],
+                    "Action Required": item["action"],
+                    "Timeline": item["timeline"],
+                    "Effort": item["effort"],
+                    "Impact": item["impact"]
+                }
+                for item in items
+            ])
+        else:
+            df = pd.DataFrame([
+                {
+                    "Area" if category == "strategic_enhancements" else "Improvement": 
+                    item.get("area", item.get("improvement")),
+                    "Action Required": item["action"],
+                    "Timeline": item["timeline"],
+                    "Effort": item["effort"],
+                    "Impact": item["impact"]
+                }
+                for item in items
+            ])
+        
+        st.dataframe(df, use_container_width=True)
+        st.write("")  # Add spacing
     
     # Key Recommendations Summary
     st.header("🎯 Key Recommendations Summary")
